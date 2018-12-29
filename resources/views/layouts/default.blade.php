@@ -1,19 +1,19 @@
 <!DOCTYPE html>
 <html>
-<head>
-    <meta charset="utf-8" />
-    <title>@yield('title','Weibo App') - Laravel 入门教程</title>
-    <!-- <link rel="stylesheet" href="/css/app.css"> -->
+  <head>
+    <title>@yield('title', 'Weibo App') - Laravel 入门教程</title>
     <link rel="stylesheet" href="{{ mix('css/app.css') }}">
-</head>
-<body>
+  </head>
+
+  <body>
     @include('layouts._header')
 
     <div class="container">
-        <div class="offset-md-1 col-md-10">
-            @yield('content')
-            @include('layouts._footer')
-        </div>
+      <div class="offset-md-1 col-md-10">
+        @include('shared._messages')
+        @yield('content')
+        @include('layouts._footer')
+      </div>
     </div>
-</body>
+  </body>
 </html>
