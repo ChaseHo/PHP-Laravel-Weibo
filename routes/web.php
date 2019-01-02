@@ -24,3 +24,6 @@ Route::post('login', 'SessionsController@store')->name('login');
 Route::delete('logout', 'SessionsController@destroy')->name('logout');
 //编辑
 Route::get('/users/{user}/edit', 'UsersController@edit')->name('users.edit');
+
+//获取注册邮件
+Route::get('signup/confirm/{token}', 'UsersController@confirmEmail')->name('confirm_email');
