@@ -11,6 +11,7 @@ class DatabaseSeeder extends Seeder
 
         $this->call(UserTableSeeder::class);
         $this->call(StatusesTableSeeder::class);
+        $this->call(FollowersTableSeeder::class);//粉丝关注假数据生成顺序进行设定
 
         Model::reguard();
     }
