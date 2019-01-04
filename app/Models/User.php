@@ -51,8 +51,17 @@ class User extends Authenticatable
     //动态流原型 --- 用户模型
     public function feed()
     {
-        return $this->statuses()
-                    ->orderBy('created_at', 'desc');
+        /*
+        $user->followings与 $user->followings()是不同的，
+        $user->followings 返回的是Eloquent:集合    返回的是数据集合
+        $user->followings() 返回的是数据库请求构造器   返回的是数据库查询语句
+        $user->followings  ==  $user->followings()->get()
+        */
+        $user_ids = $this->followings->pluck('id')->toArray(); //将当前用户的id加入到user_ids数组中
+        array_push($user_ids, $this->id);
+        return Status::whereIn('user_id', $user_ids)
+                              ->with('user')
+                              ->orderBy('created_at', 'desc');
     }
 
     public function followers()
